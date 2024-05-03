@@ -1,0 +1,21 @@
+[
+    {
+      "id": 1,
+      "name": "JavaScript Basics",
+      "instructor": "John Doe",
+      "description": "Learn the basics of JavaScript programming."
+    },
+    {
+      "id": 2,
+      "name": "React Fundamentals",
+      "instructor": "Jane Smith",
+      "description": "Get started with React framework."
+    },
+    {
+      "id": 3,
+      "name": "Node.js Crash Course",
+      "instructor": "Mike Johnson",
+      "description": "Quick dive into Node.js backend development."
+    }
+  ]
+  
