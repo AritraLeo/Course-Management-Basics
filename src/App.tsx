@@ -1,53 +1,28 @@
-// src/App.tsx
-import { useState, useEffect } from 'react';
-import { fetchCourses } from './api';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import CourseListPage from './pages/CourseListPage';
+import CourseDetailsPage from './pages/CourseDetailsPage';
+import DashboardPage from './pages/DashboardPage';
 
-interface Course {
-  id: number;
-  name: string;
-  instructor: string;
-  description: string;
-}
-
-function App() {
-  const [courses, setCourses] = useState<Course[]>([]);
-  const [search, setSearch] = useState<string>('');
-
-  useEffect(() => {
-    async function loadCourses() {
-      try {
-        const data = await fetchCourses();
-        setCourses(data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    loadCourses();
-  }, []);
-
-  const filteredCourses = courses.filter(course =>
-    course.name.toLowerCase().includes(search.toLowerCase()) ||
-    course.instructor.toLowerCase().includes(search.toLowerCase())
-  );
-
+const App: React.FC = () => {
   return (
-    <div>
-      <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search..." />
-      <ul>
-        {filteredCourses.map(course => (
-          <li key={course.id} onClick={() => viewCourse(course)}>
-            <h3>{course.name}</h3>
-            <p>Instructor: {course.instructor}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Router>
+    <Routes>
+      <Route
+        path="/"
+        element={<CourseListPage />}
+        />
+      <Route
+        path="/course/:id"
+        element={<CourseDetailsPage />}
+        />
+      <Route
+        path="/dashboard"
+        element={<DashboardPage />}
+        />
+    </Routes>
+        </Router>
   );
-}
-
-function viewCourse(course: Course) {
-  // Redirect to course details page or display details here
-  console.log('Viewing course:', course);
-}
+};
 
 export default App;
