@@ -1,21 +1,29 @@
 [
-    {
-      "id": 1,
-      "name": "JavaScript Basics",
-      "instructor": "John Doe",
-      "description": "Learn the basics of JavaScript programming."
-    },
-    {
-      "id": 2,
-      "name": "React Fundamentals",
-      "instructor": "Jane Smith",
-      "description": "Get started with React framework."
-    },
-    {
-      "id": 3,
-      "name": "Node.js Crash Course",
-      "instructor": "Mike Johnson",
-      "description": "Quick dive into Node.js backend development."
-    }
-  ]
-  
+  {
+    "id": 1,
+    "name": "JavaScript Basics",
+    "instructor": "John Doe",
+    "description": "Learn the basics of JavaScript programming.",
+    "thumbnail": "javascript-basics.jpg",
+    "dueDate": "2024-06-30",
+    "progress": 50
+  },
+  {
+    "id": 2,
+    "name": "React Fundamentals",
+    "instructor": "Jane Smith",
+    "description": "Get started with React framework.",
+    "thumbnail": "react-fundamentals.jpg",
+    "dueDate": "2024-07-15",
+    "progress": 25
+  },
+  {
+    "id": 3,
+    "name": "Node.js Crash Course",
+    "instructor": "Mike Johnson",
+    "description": "Quick dive into Node.js backend development.",
+    "thumbnail": "nodejs-crash-course.jpg",
+    "dueDate": "2024-07-20",
+    "progress": 10
+  }
+]

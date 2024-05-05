@@ -1,40 +1,37 @@
-// src/pages/DashboardPage.tsx
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store/types';
-import { markCourseCompleted } from '../store/actions';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../state/store";
+import CourseCard from "../components/CourseCard";
+import { fetchCoursesAsync } from "../state/courses/coursesSlice";
+import { fetchStudentAsync } from "../state/student/studentSlice";
 
-const DashboardPage: React.FC = () => {
-  const courses = useSelector((state: RootState) => state.courses);
-  const dispatch = useDispatch();
+const Dashboard = () => {
+  const courses = useSelector((state: RootState) => state.coursesSlice);
+  const studentDetails = useSelector((state: RootState) => state.studentSlice);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const handleCourseCompletion = (id: number) => {
-    dispatch(markCourseCompleted(id));
-  };
+  useEffect(() => {
+    if (!courses || courses.length === 0) {
+      dispatch(fetchCoursesAsync());
+    }
+
+    if (!studentDetails) {
+      dispatch(fetchStudentAsync());
+    }
+  }, [courses, studentDetails, dispatch]);
+
+  const enrolledCourses = studentDetails
+    ? courses.filter((course) => studentDetails.coursesEnrolled.includes(course.id))
+    : [];
 
   return (
-    <div>
-      <h2>Student Dashboard</h2>
-      <ul>
-        {courses.map((course: Course) => (
-          <li key={course.id}>
-            <div>
-              <h3>{course.name}</h3>
-              <p>Instructor: {course.instructor}</p>
-              <img src={course.thumbnail} alt={course.name} />
-              <p>Due Date: {course.dueDate}</p>
-              <progress value={course.progress} max="100" />
-              {course.completed ? (
-                <p>Completed</p>
-              ) : (
-                <button onClick={() => handleCourseCompletion(course.id)}>Mark as Completed</button>
-              )}
-            </div>
-          </li>
-        ))}
-      </ul>
+    <div className="dashboard">
+      <h2>My Courses</h2>
+      {enrolledCourses.map((course) => (
+        <CourseCard key={course.id} course={course} />
+      ))}
     </div>
   );
 };
 
-export default DashboardPage;
+export default Dashboard;
