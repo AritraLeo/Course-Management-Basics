@@ -3,20 +3,11 @@ import { fetchCourses } from "../../api";
 
 const initialState: Course[] = []
 
-export const fetchAllCourses = () => async (dispatch: Dispatch) => {
-    const coursesData = await fetchCourses();
-    dispatch({ type: 'courses/fetched', payload: coursesData });
-};
 
 
 const coursesSlice = createSlice({
     name: 'courses',
     initialState,
-    // reducers: {
-    // GET_COURSES: (state) => {
-    //     state = coursesData;
-    // }
-    // },
     reducers: {
         getCourses: (state, action: PayloadAction<Course[]>) => {
             return action.payload;
@@ -47,8 +38,13 @@ export const fetchCoursesAsync = createAsyncThunk(
 )
 
 
-// export const {GET_COURSES} = coursesSlice.actions;
 export const { getCourses } = coursesSlice.actions;
 // export const selectCourses = (state: RootState) => state.courses;
 
 export default coursesSlice.reducer;
+
+
+// export const fetchAllCourses = () => async (dispatch: Dispatch) => {
+//     const coursesData = await fetchCourses();
+//     dispatch({ type: 'courses/fetched', payload: coursesData });
+// };

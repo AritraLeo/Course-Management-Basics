@@ -58,6 +58,8 @@ const CourseListPage = () => {
     }
   }, [courses, dispatch]);
 
+  console.log(courses);
+  
   const filteredCourses: Course[] = courses.filter((course: Course) =>
     course.name.toLowerCase().includes(search.toLowerCase()) ||
     course.instructor.toLowerCase().includes(search.toLowerCase())

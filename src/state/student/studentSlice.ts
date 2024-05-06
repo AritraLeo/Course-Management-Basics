@@ -3,26 +3,23 @@ import { fetchStudentDetails } from "../../api";
 
 const initialState: StudentDetails = {
     id: 0,
-    name: '',
-    email: '',
+    name: "",
+    email: "",
     coursesEnrolled: []
 }
 
-export const fetchStudent = () => async (dispatch: Dispatch) => {
-    const coursesData = await fetchStudentDetails();
-    dispatch({ type: 'courses/fetched', payload: coursesData });
-};
+
 
 
 const studentSlice = createSlice({
-    name: 'courses',
+    name: 'student',
     initialState,
     reducers: {
         getStudentDetails: (state, action: PayloadAction<StudentDetails>) => {
             return action.payload;
         },
     },
-    
+
     extraReducers: (builder) => {
         builder
             .addCase(fetchStudentAsync.pending, (state) => {
@@ -36,11 +33,11 @@ const studentSlice = createSlice({
                 console.error('Error fetching student details:', action.error);
             });
     }
-    
+
 });
 
 export const fetchStudentAsync = createAsyncThunk(
-    "courses/getStudentAsync",
+    "student/fetchStudentAsync",
     async () => {
         const student = await fetchStudentDetails();
         return student;
@@ -48,8 +45,11 @@ export const fetchStudentAsync = createAsyncThunk(
 )
 
 
-// export const {GET_COURSES} = coursesSlice.actions;
 export const { getStudentDetails } = studentSlice.actions;
-// export const selectCourses = (state: RootState) => state.courses;
 
 export default studentSlice.reducer;
+
+// export const fetchStudent = () => async (dispatch: Dispatch) => {
+//     const studentData = await fetchStudentDetails();
+//     dispatch({ type: 'courses/fetched', payload: studentData });
+// };
