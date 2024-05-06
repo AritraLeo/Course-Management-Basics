@@ -66,11 +66,49 @@ const CourseListPage = () => {
   );
 
   return (
-    <div>
-      <h2>Course List</h2>
-      <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search..." />
-      <CourseList courses={filteredCourses} />
+    // <div>
+    //   <h2>Course List</h2>
+    //   <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search..." />
+    //   <CourseList courses={filteredCourses} />
+    // </div>
+
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      padding: '20px',
+      backgroundColor: '#f5f5f5',
+      borderRadius: '10px',
+      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+    }}>
+      <h2 style={{
+        fontSize: '24px',
+        color: '#333',
+        marginBottom: '20px'
+      }}>Course List</h2>
+      <input
+        style={{
+          width: '30%',
+          padding: '10px',
+          marginBottom: '20px',
+          border: '1px solid #ccc',
+          borderRadius: '30px'
+        }}
+        type="text"
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        placeholder="Search..."
+      />
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+        gap: '20px',
+        justifyContent: 'center'
+      }}>
+        <CourseList courses={filteredCourses} />
+      </div>
     </div>
+    
   );
 };
 
