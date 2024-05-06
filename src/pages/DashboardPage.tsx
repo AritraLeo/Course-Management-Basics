@@ -39,12 +39,39 @@ const Dashboard = () => {
 
 
   return (
-    <div className="dashboard">
-      <h2>My Courses</h2>
-      {enrolledCourses.map((course) => (
-        <CourseCard key={course.id} course={course} />
-      ))}
+    // <div className="dashboard">
+    //   <h2>My Courses</h2>
+    //   {enrolledCourses.map((course) => (
+    //     <CourseCard key={course.id} course={course} />
+    //   ))}
+    // </div>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      padding: '20px',
+      backgroundColor: '#f5f5f5',
+      borderRadius: '10px',
+      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+      marginTop: '20px'
+    }}>
+      <h2 style={{
+        fontSize: '24px',
+        color: '#333',
+        marginBottom: '20px'
+      }}>My Courses</h2>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+        gap: '20px',
+        width: '100%'
+      }}>
+        {enrolledCourses.map((course) => (
+          <CourseCard key={course.id} course={course} />
+        ))}
+      </div>
     </div>
+    
   );
 };
 

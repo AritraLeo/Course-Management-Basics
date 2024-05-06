@@ -15,10 +15,10 @@ const coursesSlice = createSlice({
         markCourseCompleted: (state, action) => {
             const course = state.find((c) => c.id === action.payload);
             if (course) {
-              course.completed = true;
-              course.progress = 100;
+                course.completed = true;
+                course.progress = 100;
             }
-          },
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -45,7 +45,7 @@ export const fetchCoursesAsync = createAsyncThunk(
 )
 
 
-export const { 
+export const {
     // getCourses, 
     markCourseCompleted } = coursesSlice.actions;
 // export const selectCourses = (state: RootState) => state.courses;
