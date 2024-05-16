@@ -30,12 +30,12 @@ const Dashboard = () => {
       console.log("Student details or coursesEnrolled is undefined");
       setEnrolledCourses([]);
     }
-  }, [dispatch]);
+  }, [studentDetails, dispatch]);
 
   console.log(studentDetails);
   console.log(courses);
   console.log(enrolledCourses);
-  
+
 
 
   return (
@@ -71,7 +71,7 @@ const Dashboard = () => {
         ))}
       </div>
     </div>
-    
+
   );
 };
 
